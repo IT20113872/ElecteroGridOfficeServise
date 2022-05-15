@@ -1,5 +1,5 @@
 package service;
-import model.PowerSource;
+import model.Office;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,15 +14,15 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class PowerSourceAPI
  */
-@WebServlet("/PowerSourceAPI")
-public class PowerSourceAPI extends HttpServlet {
+@WebServlet("/OfficeAPI")
+public class OfficeAPI extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-	PowerSource ps = new PowerSource(); 
+	Office ps = new Office(); 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PowerSourceAPI() {
+    public OfficeAPI() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,7 +40,7 @@ public class PowerSourceAPI extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String output = ps.insertPowerSource(request.getParameter("officeID"),
+		String output = ps.inserOfficedata(request.getParameter("officeID"),
 				request.getParameter("officeName"),
 				request.getParameter("officeType"),
 				request.getParameter("officeAddress"),		
@@ -54,7 +54,7 @@ public class PowerSourceAPI extends HttpServlet {
 	 */
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map paras = getParasMap(request);
-		String output = ps.updatePowerSource(paras.get("hidPowerIDSubmit").toString(),
+		String output = ps.updateOffcieData(paras.get("hidPowerIDSubmit").toString(),
 				paras.get("officeID").toString(),
 				paras.get("officeName").toString(),
 				paras.get("officeType").toString(),
@@ -70,7 +70,7 @@ public class PowerSourceAPI extends HttpServlet {
 	 */
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map paras = getParasMap(request);
-		String output = ps.deletePowerSource(paras.get("ID").toString());
+		String output = ps.deleteOffcie(paras.get("ID").toString());
 		response.getWriter().write(output);
 	}
 	
@@ -96,5 +96,4 @@ public class PowerSourceAPI extends HttpServlet {
 		catch (Exception e){}
 		return map;
 	}
-
 }
